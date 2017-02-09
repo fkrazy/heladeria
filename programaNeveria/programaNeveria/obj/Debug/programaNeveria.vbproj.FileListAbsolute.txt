@@ -1,0 +1,59 @@
+C:\Users\f2kiss\AppData\Local\Temporary Projects\programaNeveria\bin\Debug\programaNeveria.exe.config
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\bin\Debug\programaNeveria.exe.config
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\bin\Debug\programaNeveria.exe
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\bin\Debug\programaNeveria.pdb
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\bin\Debug\programaNeveria.xml
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.Form1.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.inventario.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.Resources.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.vbproj.GenerateResource.Cache
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.exe
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.xml
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.pdb
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.cantidad.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.pago.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.cierre.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.agregarInventario.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.cierreSemanal.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.gastosIngresosExtra.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.recetas.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.cierreMensual.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.compras.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.galones.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.recivirPedido.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\bin\Debug\programaNeveria.exe.manifest
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\bin\Debug\programaNeveria.application
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.hacerinventario.resources
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.exe.manifest
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\obj\Debug\programaNeveria.application
+C:\Users\f2kiss\Documents\Visual Studio 2012\Projects\programaNeveria\programaNeveria\bin\Debug\MySql.Data.dll
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\bin\Debug\programaNeveria.exe.config
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.exe
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.xml
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.pdb
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\bin\Debug\programaNeveria.exe.manifest
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\bin\Debug\programaNeveria.application
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\bin\Debug\programaNeveria.exe
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\bin\Debug\programaNeveria.pdb
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\bin\Debug\programaNeveria.xml
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\bin\Debug\MySql.Data.dll
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.cierre.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.cierreMensual.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.cierreSemanal.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.compras.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.Form1.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.agregarInventario.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.cantidad.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.galones.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.gastosIngresosExtra.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.hacerinventario.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.inventario.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.Resources.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.pago.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.recetas.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.recivirPedido.resources
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.vbproj.GenerateResource.Cache
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.exe.manifest
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.application
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.vbproj.ResolveComReference.cache
+C:\Users\f2kiss\Dropbox\programaNeveria\programaNeveria\obj\Debug\programaNeveria.HojaInventario.resources
