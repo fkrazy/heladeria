@@ -603,7 +603,7 @@ FROM            registrohacverinventario</CommandText>
               <DbSource ConnectionRef="neveriaConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        recetas.inventario, SUM(recetas.cantidad) AS cantidad, inventario.DESCRIPCION
+                    <CommandText>SELECT        recetas.inventario, SUM(ventas.cantidad * recetas.cantidad) AS cantidad, inventario.DESCRIPCION
 FROM            ventas INNER JOIN
                          productofinal ON ventas.producto = productofinal.idprodF INNER JOIN
                          recetas ON productofinal.idprodF = recetas.productofinal INNER JOIN

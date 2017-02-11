@@ -148,18 +148,20 @@
         Dim cierreTablaSemanal As System.Data.DataTable
         Dim ApExcel = New Microsoft.Office.Interop.Excel.Application
         Dim Libro = ApExcel.Workbooks.Add
-        cierreTablaSemanal = InventarioDeRecetasTableAdapter.GetData(Today.AddDays(-8), Today)
+        Const diaAtraso = 7
+        cierreTablaSemanal = InventarioDeRecetasTableAdapter.GetData(Today.AddDays(-diaAtraso), Today)
         For i = 0 To cierreTablaSemanal.Rows.Count - 1
             Libro.Sheets(1).cells(2 + i, 2) = cierreTablaSemanal.Rows(i).Item("DESCRIPCION")
         Next
-        '   For i = 0 To 7
-
-        '        cierreTablaSemanal = InventarioDeRecetasTableAdapter.GetData(Today.AddDays(-8 + i), Today.AddDays(-7 + i))
-        '       cierreTablaDiario.Columns.Add(Today.AddDays(-8 + i).DayOfWeek.ToString)
-        '      For j = 0 To cierreTablaSemanal.Rows.Count - 1 ' buscando como encontrar el indice donde deb de pegar
-        'cierreTablaDiario.Rows(cierreTablaDiario.Rows.IndexOf(cierreTablaSemanal.Rows(j).Item("inventario"))).Item(j) = cierreTablaSemanal.Rows(j).Item("cantidad")
-        'Next
-        ' Next
+        For i = 0 To 6
+            Libro.Sheets(1).cells(1, 4 + i) = Today.AddDays(-diaAtraso + i).DayOfWeek.ToString
+            cierreTablaDiario = InventarioDeRecetasTableAdapter.GetData(Today.AddDays(-diaAtraso + i), Today.AddDays(-diaAtraso + 1 + i))
+            For j = 0 To cierreTablaSemanal.Rows.Count - 1
+                If Not cierreTablaDiario.Select("inventario = '" & cierreTablaSemanal.Rows(j).Item("inventario").ToString & "'").Count = 0 Then
+                    Libro.Sheets(1).cells(2 + j, 3 + i) = cierreTablaDiario.Select("inventario = '" & cierreTablaSemanal.Rows(j).Item("inventario").ToString & "'").ElementAtOrDefault(0).Item("cantidad")
+                End If
+            Next
+        Next
         Dim SaveFileDialog1 As New SaveFileDialog
         SaveFileDialog1.DefaultExt = "*.xlsx"
         SaveFileDialog1.FileName = "Inventario Molina " & Format(Today.Date, "ddmmyy")
