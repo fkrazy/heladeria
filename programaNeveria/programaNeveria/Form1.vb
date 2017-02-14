@@ -103,7 +103,6 @@
         conosGalones.ClearSelected()
         preparados.ClearSelected()
         paletas.ClearSelected()
-
         If pasar Then
             If Not BanderaClave Then
                 pedido = pedido & e.KeyChar
@@ -200,7 +199,9 @@
         'fin creacion de la meta diaria---------------------------------------------------------------------------------------------------------------
         actualizarmeta()
         'hoja inventario'--------------------------------------------------------------
-        HojaInventario()
+        If Today.DayOfWeek = DayOfWeek.Tuesday Then
+            hojainventario()
+        End If
     End Sub
     Private Sub conosGalones_SelectedIndexChanged(sender As Object, e As EventArgs) Handles conosGalones.SelectedIndexChanged
         If conosGalones.SelectedIndex <> -1 Then
