@@ -159,7 +159,44 @@
         Next
     End Sub
 
-
+    Sub iniciarRadialbutons()
+        Dim valor As Integer
+        For i = 0 To baseDatos.pedido.Rows.Count - 1
+            Dim codigo As String = baseDatos.pedido.Rows(i).Item("codigo")
+            For j = 0 To semiCodigo.Count - 1
+                Dim radialButton As Integer
+                For k = 0 To semiCodigo(j).producto.Count - 1
+                    Dim semicod = semiCodigo(j).producto(k)
+                    If semicod = codigo.Substring(0, semicod.ToString.Count - 1) & "%" Then
+                        radialButton = j
+                    End If
+                Next
+                Select Case radialButton
+                    Case 0
+                        valor = encontrarNumeroAlInicio(cubetas.Text)
+                        cubetas.Text = valor + 1 & " cubetas"
+                    Case 1
+                        valor = encontrarNumeroAlInicio(cubetas.Text)
+                        Medios.Text = valor + 1 & " medios"
+                    Case 2
+                        valor = encontrarNumeroAlInicio(Pintas.Text)
+                        Pintas.Text = valor + 1 & " Pintas"
+                    Case 3
+                        valor = encontrarNumeroAlInicio(Vasitos.Text)
+                        Vasitos.Text = valor + 1 & " Vasitos"
+                    Case 4
+                        valor = encontrarNumeroAlInicio(paletas.Text)
+                        paletas.Text = valor + 1 & " Paletas"
+                    Case 5
+                        valor = encontrarNumeroAlInicio(otrosradialbutton.Text)
+                        otrosradialbutton.Text = valor + 1 & " Otros"
+                    Case 6
+                        valor = encontrarNumeroAlInicio(RBlitros.Text)
+                        RBlitros.Text = valor + 1 & " Litros"
+                End Select
+            Next
+        Next
+    End Sub
     Private Sub compras_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: esta línea de código carga datos en la tabla 'Inventarios.PedidodeInventario' Puede moverla o quitarla según sea necesario.
         Me.PedidodeInventarioTableAdapter.Fill(Me.Inventarios.PedidodeInventario)
@@ -173,6 +210,7 @@
             baseDatos.pedido.Columns.Add("total", System.Type.GetType("System.Decimal"), "porpedir * precioPorPedido")
             If baseDatos.pedido.Rows.Count <> 0 Then
                 TotalLabel.Text = baseDatos.pedido.Compute("sum(total)", "")
+                iniciarRadialbutons()
             End If
             DataGridView1.DataSource = baseDatos.pedido
             subpedido = baseDatos.pedido.Clone

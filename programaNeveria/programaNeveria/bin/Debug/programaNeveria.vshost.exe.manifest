@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="programaNeveria.exe" size="555008">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="programaNeveria.exe" size="555520">
       <assemblyIdentity name="programaNeveria" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/+hvNAzFXuGVcKiYmBmlkyumintpdEaK504m2+O5ZQA=</dsig:DigestValue>
+        <dsig:DigestValue>o1vJ19TeZ4aYhmCymJd/AGT+I7FhaULlOIi4rXfhjys=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
