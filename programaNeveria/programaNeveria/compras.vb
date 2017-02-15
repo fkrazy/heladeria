@@ -164,36 +164,42 @@
         For i = 0 To baseDatos.pedido.Rows.Count - 1
             Dim codigo As String = baseDatos.pedido.Rows(i).Item("codigo")
             For j = 0 To semiCodigo.Count - 1
+                Dim encontrado = False
                 Dim radialButton As Integer
                 For k = 0 To semiCodigo(j).producto.Count - 1
                     Dim semicod = semiCodigo(j).producto(k)
                     If semicod = codigo.Substring(0, semicod.ToString.Count - 1) & "%" Then
                         radialButton = j
+                        encontrado = True
+                        Exit For
                     End If
                 Next
-                Select Case radialButton
-                    Case 0
-                        valor = encontrarNumeroAlInicio(cubetas.Text)
-                        cubetas.Text = valor + 1 & " cubetas"
-                    Case 1
-                        valor = encontrarNumeroAlInicio(cubetas.Text)
-                        Medios.Text = valor + 1 & " medios"
-                    Case 2
-                        valor = encontrarNumeroAlInicio(Pintas.Text)
-                        Pintas.Text = valor + 1 & " Pintas"
-                    Case 3
-                        valor = encontrarNumeroAlInicio(Vasitos.Text)
-                        Vasitos.Text = valor + 1 & " Vasitos"
-                    Case 4
-                        valor = encontrarNumeroAlInicio(paletas.Text)
-                        paletas.Text = valor + 1 & " Paletas"
-                    Case 5
-                        valor = encontrarNumeroAlInicio(otrosradialbutton.Text)
-                        otrosradialbutton.Text = valor + 1 & " Otros"
-                    Case 6
-                        valor = encontrarNumeroAlInicio(RBlitros.Text)
-                        RBlitros.Text = valor + 1 & " Litros"
-                End Select
+                If encontrado = True Then
+                    Select Case radialButton
+                        Case 0
+                            valor = encontrarNumeroAlInicio(cubetas.Text)
+                            cubetas.Text = valor + 1 & " cubetas"
+                        Case 1
+                            valor = encontrarNumeroAlInicio(cubetas.Text)
+                            Medios.Text = valor + 1 & " medios"
+                        Case 2
+                            valor = encontrarNumeroAlInicio(Pintas.Text)
+                            Pintas.Text = valor + 1 & " Pintas"
+                        Case 3
+                            valor = encontrarNumeroAlInicio(Vasitos.Text)
+                            Vasitos.Text = valor + 1 & " Vasitos"
+                        Case 4
+                            valor = encontrarNumeroAlInicio(paletas.Text)
+                            paletas.Text = valor + 1 & " Paletas"
+                        Case 5
+                            valor = encontrarNumeroAlInicio(otrosradialbutton.Text)
+                            otrosradialbutton.Text = valor + 1 & " Otros"
+                        Case 6
+                            valor = encontrarNumeroAlInicio(RBlitros.Text)
+                            RBlitros.Text = valor + 1 & " Litros"
+                    End Select
+                    Exit For
+                End If
             Next
         Next
     End Sub
@@ -219,21 +225,25 @@
             Aceptar.Text = "trasladar"
         End If
     End Sub
-
+    Sub actualizarPedido(tipo As Integer)
+        If Not IsNothing(subpedido) Then
+            subpedido.Rows.Clear()
+            For i = 0 To baseDatos.pedido.Rows.Count - 1
+                For j = 0 To semiCodigo(tipo).producto.Count - 1
+                    If baseDatos.pedido.Rows(i).Item("codigo").ToString.Substring(0, semiCodigo(tipo).producto(j).ToString.Count - 1) & "%" = semiCodigo(tipo).producto(j) Then
+                        subpedido.Rows.Add(baseDatos.pedido.Rows(i).ItemArray)
+                        pedido1.Items.Add(baseDatos.pedido.Rows(i).Item("DESCRIPCION") & "   " & baseDatos.pedido.Rows(i).Item("porpedir"))
+                    End If
+                Next
+            Next
+        End If
+    End Sub
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles cubetas.CheckedChanged
         If cubetas.Checked Then
             Const galon = 0
             actualizartabla(galon)
             actualizarlistado()
-            If Not IsNothing(subpedido) Then
-                subpedido.Rows.Clear()
-                For i = 0 To baseDatos.pedido.Rows.Count - 1
-                    If baseDatos.pedido.Rows(i).Item("codigo").ToString.Substring(0, 2) = semiCodigo(0).producto(0) Or baseDatos.pedido.Rows(i).Item("codigo").ToString.Substring(0, 3) = semiCodigo(0).producto(1) Then
-                        subpedido.Rows.Add(baseDatos.pedido.Rows(i).ItemArray)
-                        pedido1.Items.Add(baseDatos.pedido.Rows(i).Item("DESCRIPCION") & "   " & baseDatos.pedido.Rows(i).Item("porpedir"))
-                    End If
-                Next
-            End If
+            actualizarPedido(galon)
         End If
     End Sub
     Private Sub Medios_CheckedChanged(sender As Object, e As EventArgs) Handles Medios.CheckedChanged
@@ -241,15 +251,7 @@
             Const medios = 1
             actualizartabla(medios)
             actualizarlistado()
-            If Not IsNothing(subpedido) Then
-                subpedido.Rows.Clear()
-                For i = 0 To baseDatos.pedido.Rows.Count - 1
-                    If baseDatos.pedido.Rows(i).Item("codigo").ToString.Substring(0, 3) = semiCodigo(medios).producto(0) Then
-                        subpedido.Rows.Add(baseDatos.pedido.Rows(i).ItemArray)
-                        pedido1.Items.Add(baseDatos.pedido.Rows(i).Item("DESCRIPCION") & "   " & baseDatos.pedido.Rows(i).Item("porpedir"))
-                    End If
-                Next
-            End If
+            actualizarPedido(medios)
         End If
     End Sub
     Private Sub Pintas_CheckedChanged(sender As Object, e As EventArgs) Handles Pintas.CheckedChanged
@@ -257,15 +259,7 @@
             Const pintas = 2
             actualizartabla(pintas)
             actualizarlistado()
-            If Not IsNothing(subpedido) Then
-                subpedido.Rows.Clear()
-                For i = 0 To baseDatos.pedido.Rows.Count - 1
-                    If baseDatos.pedido.Rows(i).Item("codigo").ToString.Substring(0, 3) = semiCodigo(pintas).producto(0) Then
-                        subpedido.Rows.Add(baseDatos.pedido.Rows(i).ItemArray)
-                        pedido1.Items.Add(baseDatos.pedido.Rows(i).Item("DESCRIPCION") & "   " & baseDatos.pedido.Rows(i).Item("porpedir"))
-                    End If
-                Next
-            End If
+            actualizarPedido(pintas)
         End If
     End Sub
     Private Sub Vasitos_CheckedChanged(sender As Object, e As EventArgs) Handles Vasitos.CheckedChanged
@@ -273,15 +267,7 @@
             Const vasito = 3
             actualizartabla(Vasito)
             actualizarlistado()
-            If Not IsNothing(subpedido) Then
-                subpedido.Rows.Clear()
-                For i = 0 To baseDatos.pedido.Rows.Count - 1
-                    If baseDatos.pedido.Rows(i).Item("codigo").ToString.Substring(0, 2) = semiCodigo(vasito).producto(0) Then
-                        subpedido.Rows.Add(baseDatos.pedido.Rows(i).ItemArray)
-                        pedido1.Items.Add(baseDatos.pedido.Rows(i).Item("DESCRIPCION") & "   " & baseDatos.pedido.Rows(i).Item("porpedir"))
-                    End If
-                Next
-            End If
+            actualizarPedido(vasito)
         End If
     End Sub
     Private Sub paletas_CheckedChanged(sender As Object, e As EventArgs) Handles paletas.CheckedChanged
@@ -289,15 +275,7 @@
             Const paleta = 4
             actualizartabla(paleta)
             actualizarlistado()
-            If Not IsNothing(subpedido) Then
-                subpedido.Rows.Clear()
-                For i = 0 To baseDatos.pedido.Rows.Count - 1
-                    If baseDatos.pedido.Rows(i).Item("codigo").ToString.Substring(0, 2) = semiCodigo(paleta).producto(0) Or baseDatos.pedido.Rows(i).Item("codigo").ToString.Substring(0, 2) = semiCodigo(paleta).producto(1) Then
-                        subpedido.Rows.Add(baseDatos.pedido.Rows(i).ItemArray)
-                        pedido1.Items.Add(baseDatos.pedido.Rows(i).Item("DESCRIPCION") & "   " & baseDatos.pedido.Rows(i).Item("porpedir"))
-                    End If
-                Next
-            End If
+            actualizarPedido(paleta)
         End If
     End Sub
     Private Sub otrosradialbutton_CheckedChanged(sender As Object, e As EventArgs) Handles otrosradialbutton.CheckedChanged
@@ -305,15 +283,7 @@
             Const otro = 5
             actualizartabla(otro)
             actualizarlistado()
-            If Not IsNothing(subpedido) Then
-                subpedido.Rows.Clear()
-                For i = 0 To baseDatos.pedido.Rows.Count - 1
-                    If baseDatos.pedido.Rows(i).Item("codigo").ToString.Substring(0, 2) = semiCodigo(otro).producto(0) Or baseDatos.pedido.Rows(i).Item("codigo").ToString.Substring(0, 3) = semiCodigo(otro).producto(1) Or baseDatos.pedido.Rows(i).Item("codigo").ToString.Substring(0, 3) = semiCodigo(otro).producto(2) Then
-                        subpedido.Rows.Add(baseDatos.pedido.Rows(i).ItemArray)
-                        pedido1.Items.Add(baseDatos.pedido.Rows(i).Item("DESCRIPCION") & "   " & baseDatos.pedido.Rows(i).Item("porpedir"))
-                    End If
-                Next
-            End If
+            actualizarPedido(otro)
         End If
     End Sub
     Private Sub RBlitros_CheckedChanged(sender As Object, e As EventArgs) Handles RBlitros.CheckedChanged
@@ -321,18 +291,10 @@
             Const litro = 6
             actualizartabla(litro)
             actualizarlistado()
-            If Not IsNothing(subpedido) Then
-                subpedido.Rows.Clear()
-                For i = 0 To baseDatos.pedido.Rows.Count - 1
-                    If baseDatos.pedido.Rows(i).Item("codigo").ToString.Substring(0, 2) = semiCodigo(litro).producto(0) Or baseDatos.pedido.Rows(i).Item("codigo").ToString.Substring(0, 2) = semiCodigo(litro).producto(1) Then
-                        subpedido.Rows.Add(baseDatos.pedido.Rows(i).ItemArray)
-                        pedido1.Items.Add(baseDatos.pedido.Rows(i).Item("DESCRIPCION") & "   " & baseDatos.pedido.Rows(i).Item("porpedir"))
-                    End If
-                Next
-            End If
+            actualizarPedido(litro)
+            
         End If
     End Sub
-
 
     Private Sub listado_SelectedIndexChanged(sender As Object, e As EventArgs) Handles listado.SelectedIndexChanged
         Existencia.Text = "existencia: " & tabla.Rows(listado.SelectedIndex).Item("cantidad")
