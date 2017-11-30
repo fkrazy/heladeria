@@ -79,11 +79,20 @@
         Next
     End Sub
     Sub actualizarPedidoMas()
-        pedido1.Items.Add(tabla.Rows(listado.SelectedIndex).Item("DESCRIPCION") & "   " & compra.Value)
-        subpedido.Rows.Add(tabla.Rows(listado.SelectedIndex).ItemArray)
-        subpedido.Rows(subpedido.Rows.Count - 1).SetField("porpedir", compra.Value)
-        baseDatos.pedido.Rows.Add(tabla.Rows(listado.SelectedIndex).ItemArray)
-        baseDatos.pedido.Rows(baseDatos.pedido.Rows.Count - 1).SetField("porpedir", compra.Value)
+        If CB_fraccion_pedido.Checked Then
+            pedido1.Items.Add(tabla.Rows(listado.SelectedIndex).Item("DESCRIPCION") & "   " & compra.Value & CB_fraccion_pedido.Text())
+            subpedido.Rows.Add(tabla.Rows(listado.SelectedIndex).ItemArray)
+            subpedido.Rows(subpedido.Rows.Count - 1).SetField("porpedir", compra.Value / CantidadporPedido1.Value)
+            baseDatos.pedido.Rows.Add(tabla.Rows(listado.SelectedIndex).ItemArray)
+            baseDatos.pedido.Rows(baseDatos.pedido.Rows.Count - 1).SetField("porpedir", compra.Value / CantidadporPedido1.Value)
+
+        Else
+            pedido1.Items.Add(tabla.Rows(listado.SelectedIndex).Item("DESCRIPCION") & "   " & compra.Value)
+            subpedido.Rows.Add(tabla.Rows(listado.SelectedIndex).ItemArray)
+            subpedido.Rows(subpedido.Rows.Count - 1).SetField("porpedir", compra.Value)
+            baseDatos.pedido.Rows.Add(tabla.Rows(listado.SelectedIndex).ItemArray)
+            baseDatos.pedido.Rows(baseDatos.pedido.Rows.Count - 1).SetField("porpedir", compra.Value)
+        End If
     End Sub
     Sub actualizarradialbutons()
         If cubetas.Checked Then
@@ -297,11 +306,15 @@
     End Sub
 
     Private Sub listado_SelectedIndexChanged(sender As Object, e As EventArgs) Handles listado.SelectedIndexChanged
-        Existencia.Text = "existencia: " & tabla.Rows(listado.SelectedIndex).Item("cantidad")
-        minimo.Value = tabla.Rows(listado.SelectedIndex).Item("minimo")
-        precioTotal1.Text = tabla.Rows(listado.SelectedIndex).Item("precioPorPedido")
-        CantidadporPedido1.Value = tabla.Rows(listado.SelectedIndex).Item("cantporunidad")
-        CB_fraccion_pedido.Text = "/" & CantidadporPedido1.Value()
+        Try
+            minimo.Value = tabla.Rows(listado.SelectedIndex).Item("minimo")
+            precioTotal1.Text = tabla.Rows(listado.SelectedIndex).Item("precioPorPedido")
+            CantidadporPedido1.Value = tabla.Rows(listado.SelectedIndex).Item("cantporunidad")
+            CB_fraccion_pedido.Text = "/" & CantidadporPedido1.Value()
+            Existencia.Text = "existencia: " & tabla.Rows(listado.SelectedIndex).Item("cantidad")
+        Catch
+            MsgBox("A este producto le faltan datos", MsgBoxStyle.Exclamation)
+        End Try
 
     End Sub
     Private Sub pedirP1_Click(sender As Object, e As EventArgs) Handles pedirP1.Click
