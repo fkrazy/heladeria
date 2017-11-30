@@ -301,6 +301,8 @@
         minimo.Value = tabla.Rows(listado.SelectedIndex).Item("minimo")
         precioTotal1.Text = tabla.Rows(listado.SelectedIndex).Item("precioPorPedido")
         CantidadporPedido1.Value = tabla.Rows(listado.SelectedIndex).Item("cantporunidad")
+        CB_fraccion_pedido.Text = "/" & CantidadporPedido1.Value()
+
     End Sub
     Private Sub pedirP1_Click(sender As Object, e As EventArgs) Handles pedirP1.Click
         If subpedido.Rows.Contains(tabla.Rows(listado.SelectedIndex).Item("codigo")) Then

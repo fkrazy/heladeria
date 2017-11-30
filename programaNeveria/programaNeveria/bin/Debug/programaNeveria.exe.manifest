@@ -54,24 +54,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="programaNeveria.exe" size="553472">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="programaNeveria.exe" size="502272">
       <assemblyIdentity name="programaNeveria" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/fqmwli2Z72Ya6/xJYSalgeqwMc+9ETjhfxS4t3DtWo=</dsig:DigestValue>
+        <dsig:DigestValue>xtZjadrqgjhxmWrMgFLKazZCf8l4T0lbfADURfC+Azo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="programaNeveria.exe.config" size="1224">
+  <file name="programaNeveria.exe.config" size="1225">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>htafDNQtR2QKKEmquhGHhD0ELwFC9jVUKj7ZUsx8wjM=</dsig:DigestValue>
+      <dsig:DigestValue>lEHtti6XAdX77Ypni292R7mXE5taMw9I7Ua5IPgB+3U=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

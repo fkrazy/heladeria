@@ -60,6 +60,7 @@ Partial Class compras
         Me.InventarioporCodigoTableAdapter = New programaNeveria.inventariosTableAdapters.inventarioporCodigoTableAdapter()
         Me.PedidodeInventarioBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PedidodeInventarioTableAdapter = New programaNeveria.inventariosTableAdapters.PedidodeinventarioTableAdapter()
+        Me.CB_fraccion_pedido = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.CantidadporPedido1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,6 +97,7 @@ Partial Class compras
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.CB_fraccion_pedido)
         Me.TabPage1.Controls.Add(Me.precioTotal1)
         Me.TabPage1.Controls.Add(Me.Label8)
         Me.TabPage1.Controls.Add(Me.Label1)
@@ -396,6 +398,16 @@ Partial Class compras
         '
         Me.PedidodeInventarioTableAdapter.ClearBeforeFill = True
         '
+        'CB_fraccion_pedido
+        '
+        Me.CB_fraccion_pedido.AutoSize = True
+        Me.CB_fraccion_pedido.Location = New System.Drawing.Point(645, 103)
+        Me.CB_fraccion_pedido.Name = "CB_fraccion_pedido"
+        Me.CB_fraccion_pedido.Size = New System.Drawing.Size(70, 17)
+        Me.CB_fraccion_pedido.TabIndex = 12
+        Me.CB_fraccion_pedido.Text = "individual"
+        Me.CB_fraccion_pedido.UseVisualStyleBackColor = True
+        '
         'compras
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -459,4 +471,5 @@ Partial Class compras
     Friend WithEvents PedidodeInventarioTableAdapter As programaNeveria.inventariosTableAdapters.PedidodeInventarioTableAdapter
     Friend WithEvents EliminarGeneral As System.Windows.Forms.Button
     Friend WithEvents RBlitros As System.Windows.Forms.RadioButton
+    Friend WithEvents CB_fraccion_pedido As CheckBox
 End Class
