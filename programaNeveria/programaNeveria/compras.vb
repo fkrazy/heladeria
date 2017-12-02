@@ -373,7 +373,8 @@
     Private Sub Aceptar_Click(sender As Object, e As EventArgs) Handles Aceptar.Click
         If compraban Then 'cuando se hace compra
             For i = 0 To baseDatos.pedido.Rows.Count - 1
-                InventarioTableAdapter.Pedir(baseDatos.pedido.Rows(i).Item("porpedir"), baseDatos.pedido.Rows(i).Item("codigo"))
+                Dim real As Double = baseDatos.pedido.Rows(i).Item("porpedir")
+                InventarioTableAdapter.Pedir(real, baseDatos.pedido.Rows(i).Item("codigo"))
             Next
         Else 'cuando se va a sacar inventario para llevarlo a otro lado
             For i = 0 To baseDatos.pedido.Rows.Count - 1

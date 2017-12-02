@@ -45,8 +45,6 @@ Partial Public Class inventarios
     
     Private relationmedi As Global.System.Data.DataRelation
     
-    Private relationmedi1 As Global.System.Data.DataRelation
-    
     Private relationmedi2 As Global.System.Data.DataRelation
     
     Private relationprod1 As Global.System.Data.DataRelation
@@ -72,6 +70,8 @@ Partial Public Class inventarios
     Private relationinven6 As Global.System.Data.DataRelation
     
     Private relationinven7 As Global.System.Data.DataRelation
+    
+    Private relationmedi1 As Global.System.Data.DataRelation
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -417,7 +417,6 @@ Partial Public Class inventarios
             End If
         End If
         Me.relationmedi = Me.Relations("medi")
-        Me.relationmedi1 = Me.Relations("medi1")
         Me.relationmedi2 = Me.Relations("medi2")
         Me.relationprod1 = Me.Relations("prod1")
         Me.relationprod11 = Me.Relations("prod11")
@@ -431,6 +430,7 @@ Partial Public Class inventarios
         Me.relationinven5 = Me.Relations("inven5")
         Me.relationinven6 = Me.Relations("inven6")
         Me.relationinven7 = Me.Relations("inven7")
+        Me.relationmedi1 = Me.Relations("medi1")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -461,8 +461,6 @@ Partial Public Class inventarios
         MyBase.Tables.Add(Me.tableinventarioPorFecha)
         Me.relationmedi = New Global.System.Data.DataRelation("medi", New Global.System.Data.DataColumn() {Me.tablemedidas.idmedidasColumn}, New Global.System.Data.DataColumn() {Me.tableinventario.medidaColumn}, false)
         Me.Relations.Add(Me.relationmedi)
-        Me.relationmedi1 = New Global.System.Data.DataRelation("medi1", New Global.System.Data.DataColumn() {Me.tablemedidas.idmedidasColumn}, New Global.System.Data.DataColumn() {Me.tablePedidodeinventario.medidaColumn}, false)
-        Me.Relations.Add(Me.relationmedi1)
         Me.relationmedi2 = New Global.System.Data.DataRelation("medi2", New Global.System.Data.DataColumn() {Me.tablemedidas.idmedidasColumn}, New Global.System.Data.DataColumn() {Me.tableinventarioporCodigo.medidaColumn}, false)
         Me.Relations.Add(Me.relationmedi2)
         Me.relationprod1 = New Global.System.Data.DataRelation("prod1", New Global.System.Data.DataColumn() {Me.tableinventario.codigoColumn}, New Global.System.Data.DataColumn() {Me.tableregistrohacverinventario.productoColumn}, false)
@@ -489,6 +487,8 @@ Partial Public Class inventarios
         Me.Relations.Add(Me.relationinven6)
         Me.relationinven7 = New Global.System.Data.DataRelation("inven7", New Global.System.Data.DataColumn() {Me.tableinventariopormedida1.codigoColumn}, New Global.System.Data.DataColumn() {Me.tableinventarioPorFecha.inventarioColumn}, false)
         Me.Relations.Add(Me.relationinven7)
+        Me.relationmedi1 = New Global.System.Data.DataRelation("medi1", New Global.System.Data.DataColumn() {Me.tablemedidas.idmedidasColumn}, New Global.System.Data.DataColumn() {Me.tablePedidodeinventario.medidaColumn}, false)
+        Me.Relations.Add(Me.relationmedi1)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -800,7 +800,7 @@ Partial Public Class inventarios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddinventarioRow(ByVal codigo As String, ByVal DESCRIPCION As String, ByVal cantidad As Double, ByVal precio As Double, ByVal minimo As Double, ByVal cantporunidad As Double, ByVal precioPorPedido As Double, ByVal parentmedidasRowBymedi As medidasRow, ByVal porpedir As Integer) As inventarioRow
+        Public Overloads Function AddinventarioRow(ByVal codigo As String, ByVal DESCRIPCION As String, ByVal cantidad As Double, ByVal precio As Double, ByVal minimo As Double, ByVal cantporunidad As Double, ByVal precioPorPedido As Double, ByVal parentmedidasRowBymedi As medidasRow, ByVal porpedir As Double) As inventarioRow
             Dim rowinventarioRow As inventarioRow = CType(Me.NewRow,inventarioRow)
             Dim columnValuesArray() As Object = New Object() {codigo, DESCRIPCION, cantidad, precio, minimo, cantporunidad, precioPorPedido, Nothing, porpedir}
             If (Not (parentmedidasRowBymedi) Is Nothing) Then
@@ -864,7 +864,7 @@ Partial Public Class inventarios
             MyBase.Columns.Add(Me.columnprecioPorPedido)
             Me.columnmedida = New Global.System.Data.DataColumn("medida", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnmedida)
-            Me.columnporpedir = New Global.System.Data.DataColumn("porpedir", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnporpedir = New Global.System.Data.DataColumn("porpedir", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnporpedir)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columncodigo}, true))
             Me.columncodigo.AllowDBNull = false
@@ -1290,19 +1290,19 @@ Partial Public Class inventarios
         
         Private columnDESCRIPCION As Global.System.Data.DataColumn
         
-        Private columnporpedir As Global.System.Data.DataColumn
-        
-        Private columnprecioPorPedido As Global.System.Data.DataColumn
-        
         Private columncantidad As Global.System.Data.DataColumn
         
         Private columnprecio As Global.System.Data.DataColumn
         
-        Private columnmedida As Global.System.Data.DataColumn
-        
         Private columnminimo As Global.System.Data.DataColumn
         
         Private columncantporunidad As Global.System.Data.DataColumn
+        
+        Private columnprecioPorPedido As Global.System.Data.DataColumn
+        
+        Private columnmedida As Global.System.Data.DataColumn
+        
+        Private columnporpedir As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -1357,22 +1357,6 @@ Partial Public Class inventarios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property porpedirColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnporpedir
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property precioPorPedidoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnprecioPorPedido
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property cantidadColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columncantidad
@@ -1389,14 +1373,6 @@ Partial Public Class inventarios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property medidaColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnmedida
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property minimoColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnminimo
@@ -1408,6 +1384,30 @@ Partial Public Class inventarios
         Public ReadOnly Property cantporunidadColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columncantporunidad
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property precioPorPedidoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnprecioPorPedido
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property medidaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmedida
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property porpedirColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnporpedir
             End Get
         End Property
         
@@ -1448,11 +1448,11 @@ Partial Public Class inventarios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddPedidodeinventarioRow(ByVal codigo As String, ByVal DESCRIPCION As String, ByVal porpedir As Double, ByVal precioPorPedido As Double, ByVal cantidad As Double, ByVal precio As Double, ByVal parentmedidasRowBymedi1 As medidasRow, ByVal minimo As Double, ByVal cantporunidad As Double) As PedidodeinventarioRow
+        Public Overloads Function AddPedidodeinventarioRow(ByVal codigo As String, ByVal DESCRIPCION As String, ByVal cantidad As Double, ByVal precio As Double, ByVal minimo As Double, ByVal cantporunidad As Double, ByVal precioPorPedido As Double, ByVal parentmedidasRowBymedi1 As medidasRow, ByVal porpedir As Double) As PedidodeinventarioRow
             Dim rowPedidodeinventarioRow As PedidodeinventarioRow = CType(Me.NewRow,PedidodeinventarioRow)
-            Dim columnValuesArray() As Object = New Object() {codigo, DESCRIPCION, porpedir, precioPorPedido, cantidad, precio, Nothing, minimo, cantporunidad}
+            Dim columnValuesArray() As Object = New Object() {codigo, DESCRIPCION, cantidad, precio, minimo, cantporunidad, precioPorPedido, Nothing, porpedir}
             If (Not (parentmedidasRowBymedi1) Is Nothing) Then
-                columnValuesArray(6) = parentmedidasRowBymedi1(0)
+                columnValuesArray(7) = parentmedidasRowBymedi1(0)
             End If
             rowPedidodeinventarioRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowPedidodeinventarioRow)
@@ -1484,13 +1484,13 @@ Partial Public Class inventarios
         Friend Sub InitVars()
             Me.columncodigo = MyBase.Columns("codigo")
             Me.columnDESCRIPCION = MyBase.Columns("DESCRIPCION")
-            Me.columnporpedir = MyBase.Columns("porpedir")
-            Me.columnprecioPorPedido = MyBase.Columns("precioPorPedido")
             Me.columncantidad = MyBase.Columns("cantidad")
             Me.columnprecio = MyBase.Columns("precio")
-            Me.columnmedida = MyBase.Columns("medida")
             Me.columnminimo = MyBase.Columns("minimo")
             Me.columncantporunidad = MyBase.Columns("cantporunidad")
+            Me.columnprecioPorPedido = MyBase.Columns("precioPorPedido")
+            Me.columnmedida = MyBase.Columns("medida")
+            Me.columnporpedir = MyBase.Columns("porpedir")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1500,20 +1500,20 @@ Partial Public Class inventarios
             MyBase.Columns.Add(Me.columncodigo)
             Me.columnDESCRIPCION = New Global.System.Data.DataColumn("DESCRIPCION", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDESCRIPCION)
-            Me.columnporpedir = New Global.System.Data.DataColumn("porpedir", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnporpedir)
-            Me.columnprecioPorPedido = New Global.System.Data.DataColumn("precioPorPedido", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnprecioPorPedido)
             Me.columncantidad = New Global.System.Data.DataColumn("cantidad", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncantidad)
             Me.columnprecio = New Global.System.Data.DataColumn("precio", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnprecio)
-            Me.columnmedida = New Global.System.Data.DataColumn("medida", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnmedida)
             Me.columnminimo = New Global.System.Data.DataColumn("minimo", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnminimo)
             Me.columncantporunidad = New Global.System.Data.DataColumn("cantporunidad", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncantporunidad)
+            Me.columnprecioPorPedido = New Global.System.Data.DataColumn("precioPorPedido", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnprecioPorPedido)
+            Me.columnmedida = New Global.System.Data.DataColumn("medida", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmedida)
+            Me.columnporpedir = New Global.System.Data.DataColumn("porpedir", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnporpedir)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columncodigo}, true))
             Me.columncodigo.AllowDBNull = false
             Me.columncodigo.Unique = true
@@ -3602,10 +3602,10 @@ Partial Public Class inventarios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property porpedir() As Integer
+        Public Property porpedir() As Double
             Get
                 Try 
-                    Return CType(Me(Me.tableinventario.porpedirColumn),Integer)
+                    Return CType(Me(Me.tableinventario.porpedirColumn),Double)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("El valor de la columna 'porpedir' de la tabla 'inventario' es DBNull.", e)
                 End Try
@@ -3818,21 +3818,21 @@ Partial Public Class inventarios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function GetPedidodeinventarioRows() As PedidodeinventarioRow()
-            If (Me.Table.ChildRelations("medi1") Is Nothing) Then
-                Return New PedidodeinventarioRow(-1) {}
-            Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("medi1")),PedidodeinventarioRow())
-            End If
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function GetinventarioporCodigoRows() As inventarioporCodigoRow()
             If (Me.Table.ChildRelations("medi2") Is Nothing) Then
                 Return New inventarioporCodigoRow(-1) {}
             Else
                 Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("medi2")),inventarioporCodigoRow())
+            End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function GetPedidodeinventarioRows() As PedidodeinventarioRow()
+            If (Me.Table.ChildRelations("medi1") Is Nothing) Then
+                Return New PedidodeinventarioRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("medi1")),PedidodeinventarioRow())
             End If
         End Function
     End Class
@@ -3880,37 +3880,6 @@ Partial Public Class inventarios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property porpedir() As Double
-            Get
-                Try 
-                    Return CType(Me(Me.tablePedidodeinventario.porpedirColumn),Double)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'porpedir' de la tabla 'Pedidodeinventario' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePedidodeinventario.porpedirColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property precioPorPedido() As Double
-            Get
-                Try 
-                    Return CType(Me(Me.tablePedidodeinventario.precioPorPedidoColumn),Double)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'precioPorPedido' de la tabla 'Pedidodeinventario' es DBNu"& _ 
-                            "ll.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePedidodeinventario.precioPorPedidoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property cantidad() As Double
             Get
                 Try 
@@ -3936,21 +3905,6 @@ Partial Public Class inventarios
             End Get
             Set
                 Me(Me.tablePedidodeinventario.precioColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property medida() As Integer
-            Get
-                Try 
-                    Return CType(Me(Me.tablePedidodeinventario.medidaColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'medida' de la tabla 'Pedidodeinventario' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablePedidodeinventario.medidaColumn) = value
             End Set
         End Property
         
@@ -3987,6 +3941,52 @@ Partial Public Class inventarios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property precioPorPedido() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tablePedidodeinventario.precioPorPedidoColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'precioPorPedido' de la tabla 'Pedidodeinventario' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePedidodeinventario.precioPorPedidoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property medida() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablePedidodeinventario.medidaColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'medida' de la tabla 'Pedidodeinventario' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePedidodeinventario.medidaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property porpedir() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tablePedidodeinventario.porpedirColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'porpedir' de la tabla 'Pedidodeinventario' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePedidodeinventario.porpedirColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property medidasRow() As medidasRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("medi1")),medidasRow)
@@ -4006,30 +4006,6 @@ Partial Public Class inventarios
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetDESCRIPCIONNull()
             Me(Me.tablePedidodeinventario.DESCRIPCIONColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsporpedirNull() As Boolean
-            Return Me.IsNull(Me.tablePedidodeinventario.porpedirColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetporpedirNull()
-            Me(Me.tablePedidodeinventario.porpedirColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsprecioPorPedidoNull() As Boolean
-            Return Me.IsNull(Me.tablePedidodeinventario.precioPorPedidoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetprecioPorPedidoNull()
-            Me(Me.tablePedidodeinventario.precioPorPedidoColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4058,18 +4034,6 @@ Partial Public Class inventarios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsmedidaNull() As Boolean
-            Return Me.IsNull(Me.tablePedidodeinventario.medidaColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetmedidaNull()
-            Me(Me.tablePedidodeinventario.medidaColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsminimoNull() As Boolean
             Return Me.IsNull(Me.tablePedidodeinventario.minimoColumn)
         End Function
@@ -4090,6 +4054,42 @@ Partial Public Class inventarios
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetcantporunidadNull()
             Me(Me.tablePedidodeinventario.cantporunidadColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsprecioPorPedidoNull() As Boolean
+            Return Me.IsNull(Me.tablePedidodeinventario.precioPorPedidoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetprecioPorPedidoNull()
+            Me(Me.tablePedidodeinventario.precioPorPedidoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsmedidaNull() As Boolean
+            Return Me.IsNull(Me.tablePedidodeinventario.medidaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetmedidaNull()
+            Me(Me.tablePedidodeinventario.medidaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsporpedirNull() As Boolean
+            Return Me.IsNull(Me.tablePedidodeinventario.porpedirColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetporpedirNull()
+            Me(Me.tablePedidodeinventario.porpedirColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6127,8 +6127,8 @@ Namespace inventariosTableAdapters
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@pedido"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "porpedir"
             Me._commandCollection(7).Parameters.Add(param)
@@ -6749,10 +6749,10 @@ Namespace inventariosTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function Pedir(ByVal pedido As Global.System.Nullable(Of Integer), ByVal codigo As String) As Integer
+        Public Overloads Overridable Function Pedir(ByVal pedido As Global.System.Nullable(Of Decimal), ByVal codigo As String) As Integer
             Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(7)
             If (pedido.HasValue = true) Then
-                command.Parameters(0).Value = CType(pedido.Value,Integer)
+                command.Parameters(0).Value = CType(pedido.Value,Decimal)
             Else
                 command.Parameters(0).Value = Global.System.DBNull.Value
             End If
@@ -7305,22 +7305,22 @@ Namespace inventariosTableAdapters
             tableMapping.ColumnMappings.Add("codigo", "codigo")
             tableMapping.ColumnMappings.Add("DESCRIPCION", "DESCRIPCION")
             tableMapping.ColumnMappings.Add("precio", "precio")
-            tableMapping.ColumnMappings.Add("medida", "medida")
             tableMapping.ColumnMappings.Add("minimo", "minimo")
-            tableMapping.ColumnMappings.Add("cantporunidad", "cantporunidad")
             tableMapping.ColumnMappings.Add("cantidad", "cantidad")
             tableMapping.ColumnMappings.Add("porpedir", "porpedir")
             tableMapping.ColumnMappings.Add("precioPorPedido", "precioPorPedido")
+            tableMapping.ColumnMappings.Add("cantporunidad", "cantporunidad")
+            tableMapping.ColumnMappings.Add("medida", "medida")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
             Me._adapter.DeleteCommand.CommandText = "DELETE FROM `inventario` WHERE ((`codigo` = @p1) AND ((@p2 = 1 AND `DESCRIPCION` "& _ 
                 "IS NULL) OR (`DESCRIPCION` = @p3)) AND ((@p4 = 1 AND `precio` IS NULL) OR (`prec"& _ 
-                "io` = @p5)) AND ((@p6 = 1 AND `medida` IS NULL) OR (`medida` = @p7)) AND ((@p8 ="& _ 
-                " 1 AND `minimo` IS NULL) OR (`minimo` = @p9)) AND ((@p10 = 1 AND `cantporunidad`"& _ 
-                " IS NULL) OR (`cantporunidad` = @p11)) AND ((@p12 = 1 AND `cantidad` IS NULL) OR"& _ 
-                " (`cantidad` = @p13)) AND ((@p14 = 1 AND `porpedir` IS NULL) OR (`porpedir` = @p"& _ 
-                "15)) AND ((@p16 = 1 AND `precioPorPedido` IS NULL) OR (`precioPorPedido` = @p17)"& _ 
+                "io` = @p5)) AND ((@p6 = 1 AND `minimo` IS NULL) OR (`minimo` = @p7)) AND ((@p8 ="& _ 
+                " 1 AND `cantidad` IS NULL) OR (`cantidad` = @p9)) AND ((@p10 = 1 AND `porpedir` "& _ 
+                "IS NULL) OR (`porpedir` = @p11)) AND ((@p12 = 1 AND `precioPorPedido` IS NULL) O"& _ 
+                "R (`precioPorPedido` = @p13)) AND ((@p14 = 1 AND `cantporunidad` IS NULL) OR (`c"& _ 
+                "antporunidad` = @p15)) AND ((@p16 = 1 AND `medida` IS NULL) OR (`medida` = @p17)"& _ 
                 "))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -7370,16 +7370,16 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "medida"
+            param.SourceColumn = "minimo"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p7"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.DbType = Global.System.Data.DbType.[Double]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
-            param.SourceColumn = "medida"
+            param.SourceColumn = "minimo"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -7387,7 +7387,7 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "minimo"
+            param.SourceColumn = "cantidad"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
@@ -7396,7 +7396,7 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
-            param.SourceColumn = "minimo"
+            param.SourceColumn = "cantidad"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -7404,7 +7404,7 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "cantporunidad"
+            param.SourceColumn = "porpedir"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
@@ -7413,7 +7413,7 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
-            param.SourceColumn = "cantporunidad"
+            param.SourceColumn = "porpedir"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -7421,7 +7421,7 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "cantidad"
+            param.SourceColumn = "precioPorPedido"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
@@ -7430,7 +7430,7 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
-            param.SourceColumn = "cantidad"
+            param.SourceColumn = "precioPorPedido"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -7438,16 +7438,16 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "porpedir"
+            param.SourceColumn = "cantporunidad"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p15"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.DbType = Global.System.Data.DbType.[Double]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
-            param.SourceColumn = "porpedir"
+            param.SourceColumn = "cantporunidad"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -7455,22 +7455,22 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "precioPorPedido"
+            param.SourceColumn = "medida"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p17"
-            param.DbType = Global.System.Data.DbType.[Double]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "precioPorPedido"
+            param.SourceColumn = "medida"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `inventario` (`codigo`, `DESCRIPCION`, `precio`, `medida`, `minimo`, "& _ 
-                "`cantporunidad`, `cantidad`, `porpedir`, `precioPorPedido`) VALUES (@p1, @p2, @p"& _ 
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `inventario` (`codigo`, `DESCRIPCION`, `precio`, `minimo`, `cantidad`"& _ 
+                ", `porpedir`, `precioPorPedido`, `cantporunidad`, `medida`) VALUES (@p1, @p2, @p"& _ 
                 "3, @p4, @p5, @p6, @p7, @p8, @p9)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -7496,58 +7496,58 @@ Namespace inventariosTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p4"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "medida"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p5"
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "minimo"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p6"
-            param.DbType = Global.System.Data.DbType.[Double]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "cantporunidad"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p7"
+            param.ParameterName = "@p5"
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "cantidad"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p8"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.ParameterName = "@p6"
+            param.DbType = Global.System.Data.DbType.[Double]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "porpedir"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p9"
+            param.ParameterName = "@p7"
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "precioPorPedido"
             Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p8"
+            param.DbType = Global.System.Data.DbType.[Double]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
+            param.IsNullable = true
+            param.SourceColumn = "cantporunidad"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p9"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "medida"
+            Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `inventario` SET `codigo` = @p1, `DESCRIPCION` = @p2, `precio` = @p3, `med"& _ 
-                "ida` = @p4, `minimo` = @p5, `cantporunidad` = @p6, `cantidad` = @p7, `porpedir` "& _ 
-                "= @p8, `precioPorPedido` = @p9 WHERE ((`codigo` = @p10) AND ((@p11 = 1 AND `DESC"& _ 
+            Me._adapter.UpdateCommand.CommandText = "UPDATE `inventario` SET `codigo` = @p1, `DESCRIPCION` = @p2, `precio` = @p3, `min"& _ 
+                "imo` = @p4, `cantidad` = @p5, `porpedir` = @p6, `precioPorPedido` = @p7, `cantpo"& _ 
+                "runidad` = @p8, `medida` = @p9 WHERE ((`codigo` = @p10) AND ((@p11 = 1 AND `DESC"& _ 
                 "RIPCION` IS NULL) OR (`DESCRIPCION` = @p12)) AND ((@p13 = 1 AND `precio` IS NULL"& _ 
-                ") OR (`precio` = @p14)) AND ((@p15 = 1 AND `medida` IS NULL) OR (`medida` = @p16"& _ 
-                ")) AND ((@p17 = 1 AND `minimo` IS NULL) OR (`minimo` = @p18)) AND ((@p19 = 1 AND"& _ 
-                " `cantporunidad` IS NULL) OR (`cantporunidad` = @p20)) AND ((@p21 = 1 AND `canti"& _ 
-                "dad` IS NULL) OR (`cantidad` = @p22)) AND ((@p23 = 1 AND `porpedir` IS NULL) OR "& _ 
-                "(`porpedir` = @p24)) AND ((@p25 = 1 AND `precioPorPedido` IS NULL) OR (`precioPo"& _ 
-                "rPedido` = @p26)))"
+                ") OR (`precio` = @p14)) AND ((@p15 = 1 AND `minimo` IS NULL) OR (`minimo` = @p16"& _ 
+                ")) AND ((@p17 = 1 AND `cantidad` IS NULL) OR (`cantidad` = @p18)) AND ((@p19 = 1"& _ 
+                " AND `porpedir` IS NULL) OR (`porpedir` = @p20)) AND ((@p21 = 1 AND `precioPorPe"& _ 
+                "dido` IS NULL) OR (`precioPorPedido` = @p22)) AND ((@p23 = 1 AND `cantporunidad`"& _ 
+                " IS NULL) OR (`cantporunidad` = @p24)) AND ((@p25 = 1 AND `medida` IS NULL) OR ("& _ 
+                "`medida` = @p26)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p1"
@@ -7572,45 +7572,45 @@ Namespace inventariosTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p4"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "medida"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p5"
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "minimo"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p6"
-            param.DbType = Global.System.Data.DbType.[Double]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "cantporunidad"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p7"
+            param.ParameterName = "@p5"
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "cantidad"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p8"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.ParameterName = "@p6"
+            param.DbType = Global.System.Data.DbType.[Double]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "porpedir"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@p9"
+            param.ParameterName = "@p7"
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "precioPorPedido"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p8"
+            param.DbType = Global.System.Data.DbType.[Double]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
+            param.IsNullable = true
+            param.SourceColumn = "cantporunidad"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@p9"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "medida"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p10"
@@ -7659,16 +7659,16 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "medida"
+            param.SourceColumn = "minimo"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p16"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.DbType = Global.System.Data.DbType.[Double]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
-            param.SourceColumn = "medida"
+            param.SourceColumn = "minimo"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -7676,7 +7676,7 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "minimo"
+            param.SourceColumn = "cantidad"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -7685,7 +7685,7 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
-            param.SourceColumn = "minimo"
+            param.SourceColumn = "cantidad"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -7693,7 +7693,7 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "cantporunidad"
+            param.SourceColumn = "porpedir"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -7702,7 +7702,7 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
-            param.SourceColumn = "cantporunidad"
+            param.SourceColumn = "porpedir"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -7710,7 +7710,7 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "cantidad"
+            param.SourceColumn = "precioPorPedido"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -7719,7 +7719,7 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
-            param.SourceColumn = "cantidad"
+            param.SourceColumn = "precioPorPedido"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -7727,16 +7727,16 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "porpedir"
+            param.SourceColumn = "cantporunidad"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p24"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.DbType = Global.System.Data.DbType.[Double]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
-            param.SourceColumn = "porpedir"
+            param.SourceColumn = "cantporunidad"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -7744,16 +7744,16 @@ Namespace inventariosTableAdapters
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "precioPorPedido"
+            param.SourceColumn = "medida"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@p26"
-            param.DbType = Global.System.Data.DbType.[Double]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "precioPorPedido"
+            param.SourceColumn = "medida"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
         End Sub
@@ -7771,8 +7771,8 @@ Namespace inventariosTableAdapters
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        codigo, DESCRIPCION, precio, medida, minimo, cantporunidad, cantida"& _ 
-                "d, porpedir, precioPorPedido"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            inventario"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (porpedir"& _ 
+            Me._commandCollection(0).CommandText = "SELECT        codigo, DESCRIPCION, precio, minimo, cantidad, porpedir, precioPorP"& _ 
+                "edido, cantporunidad, medida"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            inventario"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (porpedir"& _ 
                 " > 0)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
@@ -7833,7 +7833,7 @@ Namespace inventariosTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal p1 As String, ByVal p3 As String, ByVal p5 As Global.System.Nullable(Of Double), ByVal p7 As Global.System.Nullable(Of Integer), ByVal p9 As Global.System.Nullable(Of Double), ByVal p11 As Global.System.Nullable(Of Double), ByVal p13 As Global.System.Nullable(Of Double), ByVal p15 As Global.System.Nullable(Of Integer), ByVal p17 As Global.System.Nullable(Of Double)) As Integer
+        Public Overloads Overridable Function Delete(ByVal p1 As String, ByVal p3 As String, ByVal p5 As Global.System.Nullable(Of Double), ByVal p7 As Global.System.Nullable(Of Double), ByVal p9 As Global.System.Nullable(Of Double), ByVal p11 As Global.System.Nullable(Of Double), ByVal p13 As Global.System.Nullable(Of Double), ByVal p15 As Global.System.Nullable(Of Double), ByVal p17 As Global.System.Nullable(Of Integer)) As Integer
             If (p1 Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("p1")
             Else
@@ -7855,7 +7855,7 @@ Namespace inventariosTableAdapters
             End If
             If (p7.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(p7.Value,Integer)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(p7.Value,Double)
             Else
                 Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
@@ -7883,14 +7883,14 @@ Namespace inventariosTableAdapters
             End If
             If (p15.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(p15.Value,Integer)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(p15.Value,Double)
             Else
                 Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
             End If
             If (p17.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(p17.Value,Double)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(p17.Value,Integer)
             Else
                 Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
@@ -7914,7 +7914,7 @@ Namespace inventariosTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal p1 As String, ByVal p2 As String, ByVal p3 As Global.System.Nullable(Of Double), ByVal p4 As Global.System.Nullable(Of Integer), ByVal p5 As Global.System.Nullable(Of Double), ByVal p6 As Global.System.Nullable(Of Double), ByVal p7 As Global.System.Nullable(Of Double), ByVal p8 As Global.System.Nullable(Of Integer), ByVal p9 As Global.System.Nullable(Of Double)) As Integer
+        Public Overloads Overridable Function Insert(ByVal p1 As String, ByVal p2 As String, ByVal p3 As Global.System.Nullable(Of Double), ByVal p4 As Global.System.Nullable(Of Double), ByVal p5 As Global.System.Nullable(Of Double), ByVal p6 As Global.System.Nullable(Of Double), ByVal p7 As Global.System.Nullable(Of Double), ByVal p8 As Global.System.Nullable(Of Double), ByVal p9 As Global.System.Nullable(Of Integer)) As Integer
             If (p1 Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("p1")
             Else
@@ -7931,7 +7931,7 @@ Namespace inventariosTableAdapters
                 Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
             If (p4.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(p4.Value,Integer)
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(p4.Value,Double)
             Else
                 Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
             End If
@@ -7951,12 +7951,12 @@ Namespace inventariosTableAdapters
                 Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
             If (p8.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(p8.Value,Integer)
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(p8.Value,Double)
             Else
                 Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
             If (p9.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(p9.Value,Double)
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(p9.Value,Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
@@ -7983,21 +7983,21 @@ Namespace inventariosTableAdapters
                     ByVal p1 As String,  _
                     ByVal p2 As String,  _
                     ByVal p3 As Global.System.Nullable(Of Double),  _
-                    ByVal p4 As Global.System.Nullable(Of Integer),  _
+                    ByVal p4 As Global.System.Nullable(Of Double),  _
                     ByVal p5 As Global.System.Nullable(Of Double),  _
                     ByVal p6 As Global.System.Nullable(Of Double),  _
                     ByVal p7 As Global.System.Nullable(Of Double),  _
-                    ByVal p8 As Global.System.Nullable(Of Integer),  _
-                    ByVal p9 As Global.System.Nullable(Of Double),  _
+                    ByVal p8 As Global.System.Nullable(Of Double),  _
+                    ByVal p9 As Global.System.Nullable(Of Integer),  _
                     ByVal p10 As String,  _
                     ByVal p12 As String,  _
                     ByVal p14 As Global.System.Nullable(Of Double),  _
-                    ByVal p16 As Global.System.Nullable(Of Integer),  _
+                    ByVal p16 As Global.System.Nullable(Of Double),  _
                     ByVal p18 As Global.System.Nullable(Of Double),  _
                     ByVal p20 As Global.System.Nullable(Of Double),  _
                     ByVal p22 As Global.System.Nullable(Of Double),  _
-                    ByVal p24 As Global.System.Nullable(Of Integer),  _
-                    ByVal p26 As Global.System.Nullable(Of Double)) As Integer
+                    ByVal p24 As Global.System.Nullable(Of Double),  _
+                    ByVal p26 As Global.System.Nullable(Of Integer)) As Integer
             If (p1 Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("p1")
             Else
@@ -8014,7 +8014,7 @@ Namespace inventariosTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
             If (p4.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(p4.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(p4.Value,Double)
             Else
                 Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
             End If
@@ -8034,12 +8034,12 @@ Namespace inventariosTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
             If (p8.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(p8.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(p8.Value,Double)
             Else
                 Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
             If (p9.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(p9.Value,Double)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(p9.Value,Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
@@ -8064,7 +8064,7 @@ Namespace inventariosTableAdapters
             End If
             If (p16.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(p16.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(p16.Value,Double)
             Else
                 Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
@@ -8092,14 +8092,14 @@ Namespace inventariosTableAdapters
             End If
             If (p24.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(p24.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(p24.Value,Double)
             Else
                 Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
             End If
             If (p26.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(p26.Value,Double)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(p26.Value,Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
@@ -8126,21 +8126,21 @@ Namespace inventariosTableAdapters
         Public Overloads Overridable Function Update( _
                     ByVal p2 As String,  _
                     ByVal p3 As Global.System.Nullable(Of Double),  _
-                    ByVal p4 As Global.System.Nullable(Of Integer),  _
+                    ByVal p4 As Global.System.Nullable(Of Double),  _
                     ByVal p5 As Global.System.Nullable(Of Double),  _
                     ByVal p6 As Global.System.Nullable(Of Double),  _
                     ByVal p7 As Global.System.Nullable(Of Double),  _
-                    ByVal p8 As Global.System.Nullable(Of Integer),  _
-                    ByVal p9 As Global.System.Nullable(Of Double),  _
+                    ByVal p8 As Global.System.Nullable(Of Double),  _
+                    ByVal p9 As Global.System.Nullable(Of Integer),  _
                     ByVal p10 As String,  _
                     ByVal p12 As String,  _
                     ByVal p14 As Global.System.Nullable(Of Double),  _
-                    ByVal p16 As Global.System.Nullable(Of Integer),  _
+                    ByVal p16 As Global.System.Nullable(Of Double),  _
                     ByVal p18 As Global.System.Nullable(Of Double),  _
                     ByVal p20 As Global.System.Nullable(Of Double),  _
                     ByVal p22 As Global.System.Nullable(Of Double),  _
-                    ByVal p24 As Global.System.Nullable(Of Integer),  _
-                    ByVal p26 As Global.System.Nullable(Of Double)) As Integer
+                    ByVal p24 As Global.System.Nullable(Of Double),  _
+                    ByVal p26 As Global.System.Nullable(Of Integer)) As Integer
             Return Me.Update(p10, p2, p3, p4, p5, p6, p7, p8, p9, p10, p12, p14, p16, p18, p20, p22, p24, p26)
         End Function
     End Class
