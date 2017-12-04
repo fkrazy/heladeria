@@ -34,8 +34,14 @@
             findeSemana += 1
         End If
         entresemana = fecha.Day - Today.Day - findeSemana + 1
-        Dim tabla As DataTable = CierrevariosDiasTableAdapter1.GetData(Today.AddDays(-Today.Day + 1), Today.AddMonths(1).AddDays(-Today.Day))
-        Dim suma As Integer = tabla.Compute("SUM(costo)", "")
+        Dim tabla As DataTable
+        Dim suma As Double
+        Try
+            tabla = CierrevariosDiasTableAdapter1.GetData(Today.AddDays(-Today.Day + 1), Today.AddMonths(1).AddDays(-Today.Day))
+            suma = tabla.Compute("SUM(costo)", "")
+        Catch e As Exception
+            suma = 0
+        End Try
         cuotaentresemana = (mensual1 - suma) / (entresemana + relacion * findeSemana)
         cuotafindesemana = cuotaentresemana * relacion
         If (Today.DayOfWeek = DayOfWeek.Saturday) Or (Today.DayOfWeek = DayOfWeek.Sunday) Then
@@ -54,9 +60,12 @@
             Case Is <= cuota
                 barraMeta.CreateGraphics.FillRectangle(Brushes.Red, New Rectangle(0, barraMeta.Height - (barraMeta.Height / cuota * suma), barraMeta.Width / 2, barraMeta.Height / cuota * suma))
         End Select
-        tabla = CierrevariosDiasTableAdapter1.GetData(Today.AddDays(-Today.Day + 1), Today.AddMonths(1).AddDays(-Today.Day))
-        suma = tabla.Compute("SUM(costo)", "")
-
+        Try
+            tabla = CierrevariosDiasTableAdapter1.GetData(Today.AddDays(-Today.Day + 1), Today.AddMonths(1).AddDays(-Today.Day))
+            suma = tabla.Compute("SUM(costo)", "")
+        Catch e As Exception
+            suma = 0
+        End Try
         Select Case suma
             Case Is < mensual1
                 barraMeta.CreateGraphics.FillRectangle(Brushes.Red, New Rectangle(barraMeta.Width / 2, barraMeta.Height - (barraMeta.Height / mensual1 * suma), barraMeta.Width / 2, barraMeta.Height / mensual1 * suma))
@@ -148,18 +157,46 @@
         Dim ApExcel = New Microsoft.Office.Interop.Excel.Application
         Dim Libro = ApExcel.Workbooks.Add
         Const diaAtraso = 7
+        Dim compras As System.Data.DataTable = MovimientoPorFechaTableAdapter1.GetData(Today.AddDays(-diaAtraso), Today)
         cierreTablaSemanal = InventarioDeRecetasTableAdapter.GetData(Today.AddDays(-diaAtraso), Today)
         For i = 0 To cierreTablaSemanal.Rows.Count - 1
             Libro.Sheets(1).cells(2 + i, 2) = cierreTablaSemanal.Rows(i).Item("DESCRIPCION")
         Next
         For i = 0 To 6
-            Libro.Sheets(1).cells(1, 4 + i) = Today.AddDays(-diaAtraso + i).DayOfWeek.ToString
+            Libro.Sheets(1).cells(1, 3 + i) = Today.AddDays(-diaAtraso + i).DayOfWeek.ToString
             cierreTablaDiario = InventarioDeRecetasTableAdapter.GetData(Today.AddDays(-diaAtraso + i), Today.AddDays(-diaAtraso + 1 + i))
             For j = 0 To cierreTablaSemanal.Rows.Count - 1
                 If Not cierreTablaDiario.Select("inventario = '" & cierreTablaSemanal.Rows(j).Item("inventario").ToString & "'").Count = 0 Then
                     Libro.Sheets(1).cells(2 + j, 3 + i) = cierreTablaDiario.Select("inventario = '" & cierreTablaSemanal.Rows(j).Item("inventario").ToString & "'").ElementAtOrDefault(0).Item("cantidad")
                 End If
             Next
+        Next
+        Dim fila = 0
+        Libro.Sheets(1).cells(10, 2) = "compra"
+        For i = 0 To compras.Rows.Count - 1
+            Try
+                Dim cadena As String = compras.Rows(i).Item("descripcion")
+                Dim cant As String
+                Dim encontrado = False
+                cant = cadena.Substring(cadena.IndexOf(" "c))
+                Dim descripcion = cant.Substring(cadena.IndexOf(" "c))
+                cant = cant.Substring(0, cant.IndexOf(" "c))
+                cadena = cadena.Substring(0, cadena.IndexOf(" "c))
+                For j = 0 To cierreTablaSemanal.Rows.Count - 1
+                    If cadena = cierreTablaSemanal.Rows(j).Item("codigo") Then
+                        Libro.Sheets(1).cells(10, 3 + j) = cant
+                        encontrado = True
+                        Exit For
+                    End If
+                Next
+                If encontrado Then
+                    Libro.Sheets(1).cells(2, 3 + cierreTablaSemanal.Rows.Count + fila) = descripcion
+                    Libro.Sheets(1).cells(10, 3 + cierreTablaSemanal.Rows.Count + fila) = cant
+                End If
+
+            Catch ex As Exception
+
+            End Try
         Next
         Dim SaveFileDialog1 As New SaveFileDialog
         SaveFileDialog1.DefaultExt = "*.xlsx"
@@ -199,7 +236,7 @@
         'fin creacion de la meta diaria---------------------------------------------------------------------------------------------------------------
         actualizarmeta()
         'hoja inventario'--------------------------------------------------------------
-        If Today.DayOfWeek = DayOfWeek.Tuesday Then
+        If Today.DayOfWeek = DayOfWeek.Friday Then
             hojainventario()
         End If
     End Sub

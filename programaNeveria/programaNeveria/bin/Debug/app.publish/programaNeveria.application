@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="programaNeveria.exe.manifest" size="4247">
+    <dependentAssembly dependencyType="install" codebase="Application Files\programaNeveria_1_0_0_10\programaNeveria.exe.manifest" size="4247">
       <assemblyIdentity name="programaNeveria.exe" version="1.0.0.10" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>B8jukxCox/gENfBvRSFFEaKKLQjj0DvzQFtp8ScoyA0=</dsig:DigestValue>
+        <dsig:DigestValue>30APnaqs+ad6ALYbOvzrqksM39yrgsuj+8COmMRJ65w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

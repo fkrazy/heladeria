@@ -65,6 +65,7 @@ Partial Class Form1
         Me.InventarioDeRecetasTableAdapter = New programaNeveria.inventariosTableAdapters.inventarioDeRecetasTableAdapter()
         Me.Inventarios1 = New programaNeveria.inventarios()
         Me.InventarioDeRecetasBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.MovimientoPorFechaTableAdapter1 = New programaNeveria.contabilidadTableAdapters.movimientoPorFechaTableAdapter()
         Me.GroupBox1.SuspendLayout()
         CType(Me.barraMeta, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
@@ -360,12 +361,16 @@ Partial Class Form1
         Me.InventarioDeRecetasBindingSource.DataMember = "inventarioDeRecetas"
         Me.InventarioDeRecetasBindingSource.DataSource = Me.Inventarios1
         '
+        'MovimientoPorFechaTableAdapter1
+        '
+        Me.MovimientoPorFechaTableAdapter1.ClearBeforeFill = True
+        '
         'Form1
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit
         Me.AutoScroll = True
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(1276, 774)
+        Me.ClientSize = New System.Drawing.Size(1276, 749)
         Me.ControlBox = False
         Me.Controls.Add(Me.clave2)
         Me.Controls.Add(Me.clave)
@@ -436,5 +441,5 @@ Partial Class Form1
     Friend WithEvents InventarioDeRecetasTableAdapter As programaNeveria.inventariosTableAdapters.inventarioDeRecetasTableAdapter
     Friend WithEvents Inventarios1 As programaNeveria.inventarios
     Friend WithEvents InventarioDeRecetasBindingSource As System.Windows.Forms.BindingSource
-
+    Friend WithEvents MovimientoPorFechaTableAdapter1 As contabilidadTableAdapters.movimientoPorFechaTableAdapter
 End Class

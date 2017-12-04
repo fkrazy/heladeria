@@ -73,9 +73,9 @@
 
     Private Sub Siguiente_Click(sender As Object, e As EventArgs) Handles Siguiente.Click
         For i = 0 To ver.Items.Count - 1
-            Dim aux As Double = Math.Round(subpedido.Rows(i).Item("porpedir") * subpedido.Rows(i).Item("cantporunidad"))○
+            Dim aux As Double = Math.Round(subpedido.Rows(i).Item("porpedir") * subpedido.Rows(i).Item("cantporunidad"))
             InventarioTableAdapter1.actualizarCantidad(aux, subpedido.Rows(i).Item("codigo"))
-            ContabilidadmovimientosTableAdapter1.Nuevo(subpedido.Rows(i).Item("codigo") & "  " & subpedido.Rows(i).Item("descripcion"), subpedido.Rows(i).Item("total"), Now, 2)
+            ContabilidadmovimientosTableAdapter1.Nuevo(subpedido.Rows(i).Item("codigo") & " " & aux & " " & subpedido.Rows(i).Item("descripcion"), subpedido.Rows(i).Item("total"), Now, 2)
             InventarioTableAdapter1.Pedir(0, subpedido.Rows(i).Item("codigo"))
         Next
         siguienteparte()
