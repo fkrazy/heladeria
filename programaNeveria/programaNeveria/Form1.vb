@@ -236,7 +236,7 @@
         'fin creacion de la meta diaria---------------------------------------------------------------------------------------------------------------
         actualizarmeta()
         'hoja inventario'--------------------------------------------------------------
-        If Today.DayOfWeek = DayOfWeek.Friday Then
+        If Today.DayOfWeek = DayOfWeek.Tuesday Then
             hojainventario()
         End If
     End Sub
